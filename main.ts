@@ -1,3 +1,7 @@
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite2.right = 30
+})
+let mySprite2: Sprite = null
 scene.setBackgroundColor(11)
 scene.setBackgroundImage(img`
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
@@ -121,25 +125,7 @@ scene.setBackgroundImage(img`
     333333333333333333333333333333333333333333333333333333333333333333333333333333aaaccccccaaaa333aaaccccccccccccccccccccccccccca333333333333333acccccca333333333333
     33333333333333333333333333333333333333333333333333333333333333333333333333333333aaccccccccaaaaccccccccccccccccccccccccccccccca33333333333aaaccccccca333333333333
     `)
-let mySprite = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . f f f f f . . . . . . 
-    . . . . f f f f f f f . . . . . 
-    . . . . 1 1 1 1 1 1 1 . . . . . 
-    . . . f f f f f f f f f . . . . 
-    . . . . 3 3 3 3 3 3 3 . . . . . 
-    . . . . 3 3 f 3 3 f 3 . . . . . 
-    . . . . 3 f d 3 f d 3 . . . . . 
-    . . . . 3 3 3 3 3 3 3 . . . . . 
-    . . . . f f f 3 3 3 f f f . . . 
-    . . . . f 1 1 1 1 1 f . . . . . 
-    . . . . . f . . . f . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
-let mySprite2 = sprites.create(img`
+mySprite2 = sprites.create(img`
     ....................
     ....................
     ....33333333........
@@ -161,5 +147,25 @@ let mySprite2 = sprites.create(img`
     ....................
     ....................
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 100, 100)
 controller.moveSprite(mySprite2)
+let myEnemy = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . f f f f f . . . . . . 
+    . . . . f f f f f f f . . . . . 
+    . . . . 1 1 1 1 1 1 1 . . . . . 
+    . . . f f f f f f f f f . . . . 
+    . . . . 3 3 3 3 3 3 3 . . . . . 
+    . . . . 3 3 f 3 3 f 3 . . . . . 
+    . . . . 3 f d 3 f d 3 . . . . . 
+    . . . . 3 3 3 3 3 3 3 . . . . . 
+    . . . . f f f 3 3 3 f f f . . . 
+    . . . . f 1 1 1 1 1 f . . . . . 
+    . . . . . f . . . f . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+myEnemy.setPosition(1, 5)
+myEnemy.follow(mySprite2, 50)
+myEnemy.setBounceOnWall(true)
